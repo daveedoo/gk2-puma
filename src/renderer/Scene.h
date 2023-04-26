@@ -5,6 +5,7 @@
 #include "../Camera.h"
 #include "../Window/input/handlers/CameraMovementInputHandler.h"
 #include "objects/Floor.h"
+#include "objects/Robot.h"
 
 class Scene
 {
@@ -16,6 +17,7 @@ private:
 	std::shared_ptr<Camera> camera;
 	std::shared_ptr<CameraMovementInputHandler> cameraMovementHandler;
 	std::unique_ptr<Floor> floor;
+	std::unique_ptr<Robot> robot;
 
 public:
 	Scene(unsigned int frame_width, unsigned int frame_height);

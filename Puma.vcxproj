@@ -131,6 +131,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\renderer\objects\Arm.cpp" />
+    <ClCompile Include="src\renderer\objects\Robot.cpp" />
     <ClCompile Include="src\Camera.cpp" />
     <ClCompile Include="src\CameraSubscriber.cpp" />
     <ClCompile Include="src\gl\ProgramFactory.cpp" />
@@ -150,6 +152,8 @@
     <ClCompile Include="src\Window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\renderer\objects\Arm.h" />
+    <ClInclude Include="src\renderer\objects\Robot.h" />
     <ClInclude Include="src\Camera.h" />
     <ClInclude Include="src\CameraSubscriber.h" />
     <ClInclude Include="src\Config.h" />

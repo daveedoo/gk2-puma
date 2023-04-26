@@ -15,7 +15,7 @@
 Scene::Scene(unsigned int frame_width, unsigned int frame_height) :
 	camera(std::make_shared<Camera>(90, static_cast<float>(frame_width) / static_cast<float>(frame_height), 0.1f, 100.f)),
 	cameraMovementHandler(std::make_shared<CameraMovementInputHandler>(*this->camera)),
-	floor(std::make_unique<Floor>(50, 50))
+	floor(std::make_unique<Floor>(50, 50)), robot(std::make_unique<Robot>())
 {
 	this->camera->Scale(1.f / 10.f);
 
@@ -41,4 +41,5 @@ void Scene::Render()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	this->floor->Render(*this->camera);
+	this->robot->Render(*this->camera);
 }
