@@ -16,7 +16,7 @@ class Arm
 public:
 	Arm(std::string filename);
 	void Render(const Camera& camera) const;
-	void SetModel(const glm::mat4&& model) {
+	void SetModel(const glm::mat4& model) {
 		this->model = model;
 	}
 private:

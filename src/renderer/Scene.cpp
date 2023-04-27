@@ -5,6 +5,7 @@
 #include "../gl/wrappers/Shader.h"
 #include "../Window/input/handlers/CameraMovementInputHandler.h"
 #include "../Window/input/events/ResizeEvent.h"
+#include "../Window/input/events/modded/KeyEvent.h"
 #include <imgui.h>
 #include <glm/gtx/rotate_vector.hpp>
 #include <imgui_stdlib.h>
@@ -23,6 +24,14 @@ Scene::Scene(unsigned int frame_width, unsigned int frame_height) :
 
 void Scene::HandleEvent(const InputEvent& inputEvent)	// TODO: change event type to be not ResizeEvent (it is handled in SetFramebufferSize())
 {
+	if (inputEvent.type == InputEvent::EventType::KEY) 
+	{
+		auto keyEvent = static_cast<const KeyEvent&>(inputEvent);
+		if (keyEvent.action == KeyOrButtonEvent::Action::PRESS || keyEvent.action == KeyOrButtonEvent::Action::REPEAT)
+		{
+			this->robot->HandleKey(keyEvent);
+		}
+	}
 	this->cameraMovementHandler->ProcessInput(inputEvent);
 }
 
