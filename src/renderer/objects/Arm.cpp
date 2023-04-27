@@ -62,11 +62,15 @@ Arm::Arm(std::string filename)
 	filestream.close();
 
 	this->vao = std::make_unique<GL::VAO>();
-	this->vbo = std::make_unique<GL::VBO>(vertices.data(), sizeof(VertexPosNormal) * vertexCount);
+	this->vbo = std::make_unique<GL::VBO>(vertices.data(),
+		sizeof(VertexPosNormal) * vertexCount);
 	this->ebo = std::make_unique<GL::EBO>();
-	this->ebo->SetBufferData(triangles.data(), GL::EBO::DataType::UINT, 3 * triangleCount);
-	this->vao->DefineFloatAttribute(*this->vbo, 0, 3, GL::VAO::FloatAttribute::FLOAT, sizeof(glm::vec3), 0);
-	this->vao->DefineFloatAttribute(*this->vbo, 1, 3, GL::VAO::FloatAttribute::FLOAT, sizeof(glm::vec3), sizeof(glm::vec3));
+	this->ebo->SetBufferData(triangles.data(),
+		GL::EBO::DataType::UINT, 3 * triangleCount);
+	this->vao->DefineFloatAttribute(*this->vbo, 0, 3, 
+		GL::VAO::FloatAttribute::FLOAT, sizeof(VertexPosNormal), 0);
+	this->vao->DefineFloatAttribute(*this->vbo, 1, 3, 
+		GL::VAO::FloatAttribute::FLOAT, sizeof(VertexPosNormal), sizeof(glm::vec3));
 }
 
 void Arm::Render(const Camera& camera) const
@@ -77,6 +81,6 @@ void Arm::Render(const Camera& camera) const
 	this->program->SetMat4("viewMatrix", camera.GetViewMatrix());
 	this->program->SetMat4("projMatrix", camera.GetProjectionMatrix());
 
-	glDrawElements(GL_TRIANGLES, this->triangleCount, 
+	glDrawElements(GL_TRIANGLES, this->triangleCount * 3, 
 		static_cast<GLenum>(this->ebo->GetDataType()), static_cast<const void*>(0));
 }
