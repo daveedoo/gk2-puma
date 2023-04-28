@@ -18,8 +18,7 @@ Scene::Scene(unsigned int frame_width, unsigned int frame_height) :
 	cameraMovementHandler(std::make_shared<CameraMovementInputHandler>(*this->camera)),
 	floor(std::make_unique<Floor>(50, 50)), robot(std::make_unique<Robot>())
 {
-	this->camera->Scale(1.f / 10.f);
-
+	this->camera->Translate(glm::vec3(0.f, 1.f, 1.f));
 }
 
 void Scene::HandleEvent(const InputEvent& inputEvent)	// TODO: change event type to be not ResizeEvent (it is handled in SetFramebufferSize())

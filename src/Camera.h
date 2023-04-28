@@ -9,10 +9,9 @@ private:
 
 	glm::vec3 translation = glm::vec3(0.f, 0.f, 0.f);
 
-	static constexpr float YAW_ZERO = 90.f;
+	static constexpr float YAW_ZERO = -90.f;
 	float pitch = 0.f;
-	float yaw = YAW_ZERO;	// defualt camera position is (0, 0, 1)
-	float scale = 1.0;
+	float yaw = YAW_ZERO;	// defualt camera looking direction is (0, 0, -1)
 
 	void UpdateViewMatrix();
 
@@ -32,7 +31,6 @@ public:
 	void RotateYaw(float angle);
 	/// Rotations between the poles in degrees
 	void RotatePitch(float angle);
-	void Scale(float ratio);
 	void Translate(glm::vec3 vector);
 
 	//void SetOrthogonalProjection(float left, float right, float bottom, float top, float near, float far);

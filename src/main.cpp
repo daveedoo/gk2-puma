@@ -6,7 +6,7 @@
 
 int main()
 {
-	Window window = Window(SCR_WIDTH, SCR_HEIGHT, "CAD");
+	Window window = Window(SCR_WIDTH, SCR_HEIGHT, "PUMA");
 	Renderer renderer = Renderer(window);
 
 	while (!window.ShouldClose())
