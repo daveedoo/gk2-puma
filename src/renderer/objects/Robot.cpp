@@ -1,6 +1,6 @@
 #include "Robot.h"
 #include <glm/gtc/matrix_transform.hpp>
-const double Robot::angleStep = 0.1;
+const double Robot::angleStep = 0.01;
 
 Robot::Robot()
 {
@@ -21,6 +21,7 @@ void Robot::Render(const Camera& camera) const
 
 bool Robot::HandleKey(const KeyEvent& keyEvent)
 {
+	double angleStep = keyEvent.mods.IsShiftDown() ? 10 * this->angleStep : this->angleStep;
 	switch (keyEvent.key) {
 	case GLFW_KEY_R:
 		angles[0] += angleStep;
