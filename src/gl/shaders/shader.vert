@@ -16,6 +16,6 @@ void main()
 	fragPos = gPos.xyz;
 	gl_Position = projMatrix * viewMatrix * gPos;
 
-	//matrices are only rotations and translations, so we can simplify:
+	//world matrix is only rotations and translations, so we can simplify:
 	fragNormal = normalize(worldMatrix * vec4(normal, 0.0)).xyz;
 }

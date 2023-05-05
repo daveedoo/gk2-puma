@@ -3,7 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
-#include "../../gl/ProgramFactory.h"=
+#include "../../gl/ProgramFactory.h"
 
 Arm::Arm(std::string filename)
 	: program(ProgramFactory::CreateProgram("shader.vert", "shader.frag"))
@@ -76,11 +76,15 @@ Arm::Arm(std::string filename)
 
 void Arm::Render(const Camera& camera) const
 {
+	glm::mat4 viewMatrix = camera.GetViewMatrix();
+	glm::vec3 cameraPos = -(viewMatrix * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
+
 	this->vao->Bind();
 	this->program->Use();
 	this->program->SetMat4("worldMatrix", this->model);
-	this->program->SetMat4("viewMatrix", camera.GetViewMatrix());
+	this->program->SetMat4("viewMatrix", viewMatrix);
 	this->program->SetMat4("projMatrix", camera.GetProjectionMatrix());
+	this->program->SetVec3("cameraPos", cameraPos);
 
 	glDrawElements(GL_TRIANGLES, this->triangleCount * 3, 
 		static_cast<GLenum>(this->ebo->GetDataType()), static_cast<const void*>(0));
