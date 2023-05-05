@@ -9,8 +9,9 @@ Arm::Arm(std::string filename)
 	: program(ProgramFactory::CreateProgram("shader.vert", "shader.frag"))
 {
 	glm::vec3 color(1.0f, 1.0f, 1.0f);
-
 	this->program->SetVec3("color", color);
+	glm::vec3 lightPos(-1.0f, 4.0f, 1.0f);
+	this->program->SetVec3("lightPos", lightPos);
 
 	// read data from filename line by line
 	std::string filepath = "./res/" + filename;

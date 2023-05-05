@@ -49,6 +49,8 @@ void Scene::Render()
 	glClearColor(bgColor.r, bgColor.g, bgColor.b, 1.f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	glEnable(GL_DEPTH_TEST);
 	this->floor->Render(*this->camera);
 	this->robot->Render(*this->camera);
+	glDisable(GL_DEPTH_TEST);
 }
