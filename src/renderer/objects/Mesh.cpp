@@ -15,7 +15,7 @@ void Mesh::Render(const Camera& camera)
 	if (!this->initialized) Initialize();
 
 	glm::mat4 viewMatrix = camera.GetViewMatrix();
-	glm::vec3 cameraPos = -(viewMatrix * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
+	glm::vec3 cameraPos = glm::inverse(viewMatrix) * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
 
 	this->vao->Bind();
 	this->program->Use();
