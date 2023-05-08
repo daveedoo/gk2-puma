@@ -1,5 +1,11 @@
 #include "Box.h"
 
+Box::Box() : Mesh()
+{
+    this->color = glm::vec3(1.f, 1.f, .5f);
+    this->program->SetVec3("color", this->color);
+}
+
 VertexData Box::GetVertexData() const
 {
     unsigned int vertexCount = 24;

@@ -20,6 +20,9 @@ Scene::Scene(unsigned int frame_width, unsigned int frame_height) :
 	metalSheet(std::make_unique<Sheet>()), cylinder(std::make_unique<Cylinder>())
 {
 	this->camera->Translate(glm::vec3(0.f, 1.f, 1.f));
+	this->roomBox->Initialize();
+	this->metalSheet->Initialize();
+	this->cylinder->Initialize();
 }
 
 void Scene::HandleEvent(const InputEvent& inputEvent)	// TODO: change event type to be not ResizeEvent (it is handled in SetFramebufferSize())

@@ -4,8 +4,7 @@
 Mesh::Mesh()
 	: program(ProgramFactory::CreateProgram("shader.vert", "shader.frag"))
 {
-	glm::vec3 color(1.0f, 1.0f, 1.0f);
-	this->program->SetVec3("color", color);
+	this->program->SetVec3("color", this->color);
 	glm::vec3 lightPos(-1.0f, 4.0f, 1.0f);
 	this->program->SetVec3("lightPos", lightPos);
 }

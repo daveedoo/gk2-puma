@@ -38,6 +38,7 @@ protected:
 	std::unique_ptr<GL::Program> program;
 	glm::mat4 model = glm::mat4(1.0f);
 	unsigned int triangleCount;
+	glm::vec3 color = glm::vec3(1.0f, 1.0f, 1.0f);
 private:
 	bool initialized = false;
 };
