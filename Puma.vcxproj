@@ -92,6 +92,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -122,6 +123,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -131,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\renderer\objects\Plate.cpp" />
     <ClCompile Include="src\renderer\objects\Arm.cpp" />
     <ClCompile Include="src\renderer\objects\Robot.cpp" />
     <ClCompile Include="src\Camera.cpp" />
@@ -152,6 +155,7 @@
     <ClCompile Include="src\Window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\renderer\objects\Plate.h" />
     <ClInclude Include="src\renderer\objects\Arm.h" />
     <ClInclude Include="src\renderer\objects\Robot.h" />
     <ClInclude Include="src\Camera.h" />
@@ -169,6 +173,7 @@
     <ClInclude Include="src\renderer\objects\Floor.h" />
     <ClInclude Include="src\renderer\Renderer.h" />
     <ClInclude Include="src\renderer\Scene.h" />
+    <ClInclude Include="src\renderer\VertexPosNormal.h" />
     <ClInclude Include="src\Window\input\events\InputEvent.h" />
     <ClInclude Include="src\Window\input\events\modded\KeyEvent.h" />
     <ClInclude Include="src\Window\input\events\modded\KeyOrButtonEvent.h" />

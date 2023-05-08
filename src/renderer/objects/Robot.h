@@ -9,12 +9,14 @@ public:
 	Robot();
 	void Render(const Camera& camera) const;
 	bool HandleKey(const KeyEvent& keyEvent);
+	void SetArmPosition(const glm::vec3& pos, const glm::vec3& normal);
 private:
-	void updateArms();
 	std::array<std::unique_ptr<Arm>, 6> arms;
 	std::array<float, 5> angles = {
 		0.f, 0.f, 0.f, 0.f, 0.f
 	};
 	const static double angleStep;
+
+	void updateArms();
 };
 
