@@ -9,9 +9,10 @@ private:
 
 	glm::vec3 translation = glm::vec3(0.f, 0.f, 0.f);
 
-	static constexpr float YAW_ZERO = -90.f;
+	// RPY angles of camera *direction*
+	static constexpr float YAW_ZERO = -90.f;	// defualt camera looking direction is (0, 0, -1)
 	float pitch = 0.f;
-	float yaw = YAW_ZERO;	// defualt camera looking direction is (0, 0, -1)
+	float yaw = YAW_ZERO;
 
 	void UpdateViewMatrix();
 

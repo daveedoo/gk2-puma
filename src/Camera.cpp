@@ -42,8 +42,8 @@ void Camera::RotateYaw(float angle)
 
 void Camera::Translate(glm::vec3 v)
 {
-	glm::vec3 vectorFixed = 
-		glm::rotateY(glm::vec4(v, 1.f), glm::radians(this->yaw - YAW_ZERO));
+	glm::vec3 vectorFixed =
+		glm::rotateY(v, glm::radians(YAW_ZERO - this->yaw));
 
 	this->translation += vectorFixed;
 	UpdateViewMatrix();
