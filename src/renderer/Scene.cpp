@@ -50,10 +50,12 @@ void Scene::Render()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_CULL_FACE);
 	//this->floor->Render(*this->camera);
 	this->robot->Render(*this->camera);
 	this->roomBox->Render(*this->camera);
 	this->metalSheet->Render(*this->camera);
 	this->cylinder->Render(*this->camera);
 	glDisable(GL_DEPTH_TEST);
+	glDisable(GL_CULL_FACE);
 }
