@@ -1,7 +1,6 @@
 #include "Camera.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <iostream>
-//#include "../Matrix.h"
 #include <glm/gtx/rotate_vector.hpp>
 
 
@@ -16,21 +15,20 @@ void Camera::UpdateViewMatrix()
 	const float P = glm::radians(this->pitch);
 	const float Y = glm::radians(this->yaw);
 
-	glm::vec3 eye(
+	glm::vec3 dir(
 		glm::cos(P) * glm::cos(Y),
 		glm::sin(P),
 		glm::cos(P) * glm::sin(Y)
 	);
-	eye *= 1/this->scale;
 	glm::vec3 up(0.f, 1.f, 0.f);
 
-	this->view = glm::lookAt(eye + translation, this->translation, up);
+	this->view = glm::lookAt(this->translation, this->translation + dir, up);
 }
 
 
 void Camera::RotatePitch(float angle)
 {
-	this->pitch -= angle;
+	this->pitch += angle;
 	this->pitch = glm::clamp(this->pitch, -89.f, 89.f);
 	UpdateViewMatrix();
 }
@@ -42,16 +40,10 @@ void Camera::RotateYaw(float angle)
 	UpdateViewMatrix();
 }
 
-void Camera::Scale(float ratio)
-{
-	this->scale *= ratio;
-	UpdateViewMatrix();
-}
-
 void Camera::Translate(glm::vec3 v)
 {
-	glm::vec3 vectorFixed = 
-		glm::rotateY(glm::vec4(v, 1.f), -glm::radians(this->yaw - YAW_ZERO));
+	glm::vec3 vectorFixed =
+		glm::rotateY(v, glm::radians(YAW_ZERO - this->yaw));
 
 	this->translation += vectorFixed;
 	UpdateViewMatrix();

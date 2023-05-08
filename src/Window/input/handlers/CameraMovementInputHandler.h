@@ -8,6 +8,7 @@
 #include <optional>
 #include "../../../CameraSubscriber.h"
 #include <vector>
+#include "../events/modded/KeyEvent.h"
 
 class CameraMovementInputHandler : public InputHandler
 {
@@ -31,7 +32,7 @@ public:
 private:
 	void HandleMouseClickEvent(const MouseClickEvent& event);
 	void HandleMouseMoveEvent(const MouseMoveEvent& event);
-	void HandleScrollEvent(const MouseScrollEvent& event);
+	void HandleKeyEvent(const KeyEvent& event);
 
 	void NotifySubscribers();
 };
