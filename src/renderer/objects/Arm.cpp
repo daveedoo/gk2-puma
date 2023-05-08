@@ -4,6 +4,7 @@
 #include <sstream>
 #include <iostream>
 #include "../../gl/ProgramFactory.h"=
+#include "../VertexPosNormal.h"
 
 Arm::Arm(std::string filename)
 	: program(ProgramFactory::CreateProgram("shader.vert", "shader.frag"))

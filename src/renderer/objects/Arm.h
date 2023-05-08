@@ -5,12 +5,6 @@
 #include "../../Camera.h"
 #include "../../gl/wrappers/EBO.h"
 
-struct VertexPosNormal
-{
-	glm::vec3 position;
-	glm::vec3 normal;
-};
-
 class Arm
 {
 public:
