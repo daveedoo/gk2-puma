@@ -16,7 +16,8 @@
 Scene::Scene(unsigned int frame_width, unsigned int frame_height) :
 	camera(std::make_shared<Camera>(90, static_cast<float>(frame_width) / static_cast<float>(frame_height), 0.1f, 100.f)),
 	cameraMovementHandler(std::make_shared<CameraMovementInputHandler>(*this->camera)),
-	floor(std::make_unique<Floor>(50, 50)), robot(std::make_unique<Robot>())
+	floor(std::make_unique<Floor>(50, 50)), robot(std::make_unique<Robot>()), roomBox(std::make_unique<Box>()),
+	metalSheet(std::make_unique<Sheet>()), cylinder(std::make_unique<Cylinder>())
 {
 	this->camera->Scale(1.f / 10.f);
 
@@ -50,7 +51,10 @@ void Scene::Render()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glEnable(GL_DEPTH_TEST);
-	this->floor->Render(*this->camera);
+	//this->floor->Render(*this->camera);
 	this->robot->Render(*this->camera);
+	this->roomBox->Render(*this->camera);
+	this->metalSheet->Render(*this->camera);
+	this->cylinder->Render(*this->camera);
 	glDisable(GL_DEPTH_TEST);
 }
