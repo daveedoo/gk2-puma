@@ -13,10 +13,10 @@ void CameraMovementInputHandler::ProcessInput(const InputEvent& e)
 		const MouseMoveEvent& event = static_cast<const MouseMoveEvent&>(e);
 		this->HandleMouseMoveEvent(event);
 	}
-	else if (e.type == InputEvent::EventType::MOUSE_SCROLL)
+	else if (e.type == InputEvent::EventType::KEY)
 	{
-		const MouseScrollEvent& event = static_cast<const MouseScrollEvent&>(e);
-		this->HandleScrollEvent(event);
+		const KeyEvent& event = static_cast<const KeyEvent&>(e);
+		this->HandleKeyEvent(event);
 	}
 }
 
@@ -76,16 +76,29 @@ void CameraMovementInputHandler::HandleMouseMoveEvent(const MouseMoveEvent& even
 	}
 }
 
-void CameraMovementInputHandler::HandleScrollEvent(const MouseScrollEvent& event)
+void CameraMovementInputHandler::HandleKeyEvent(const KeyEvent& event)
 {
-	static constexpr float MOUSE_SCROLL_SENSITIVITY = 0.05f;
+	static constexpr float moveStep = 0.05f;
+	if (event.action != KeyOrButtonEvent::Action::PRESS && event.action != KeyOrButtonEvent::Action::REPEAT)
+		return;
 
-	if (event.yoffset > 0)
-		this->camera.Scale(1.f + MOUSE_SCROLL_SENSITIVITY * event.yoffset);
-	else
-		this->camera.Scale(1.f/(1.f - MOUSE_SCROLL_SENSITIVITY * event.yoffset));
-
-	this->NotifySubscribers();
+	switch (event.key)
+	{
+	case GLFW_KEY_W:
+		this->camera.Translate(glm::vec3(0.f, 0.f, -moveStep)); break;
+	case GLFW_KEY_S:
+		this->camera.Translate(glm::vec3(0.f, 0.f, moveStep)); break;
+	case GLFW_KEY_A:
+		this->camera.Translate(glm::vec3(-moveStep, 0.f, 0.f)); break;
+	case GLFW_KEY_D:
+		this->camera.Translate(glm::vec3(moveStep, 0.f, 0.f)); break;
+	case GLFW_KEY_Q:
+		this->camera.Translate(glm::vec3(0.f, -moveStep, 0.f)); break;
+	case GLFW_KEY_E:
+		this->camera.Translate(glm::vec3(0.f, moveStep, 0.f)); break;
+	default:
+		break;
+	}
 }
 
 void CameraMovementInputHandler::NotifySubscribers()
