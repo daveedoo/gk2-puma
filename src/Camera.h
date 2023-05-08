@@ -16,7 +16,7 @@ private:
 
 	void UpdateViewMatrix();
 
-	float fov = 90;
+	float fov = 50;
 	float near = 0.1f;
 	float far = 100.f;
 	float aspect;
