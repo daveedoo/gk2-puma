@@ -99,7 +99,7 @@ void Scene::Render()
 	//glStencilFunc(GL_GREATER, 0, ~0);
 	//SetLight(false);
 	Draw();
-	glDisable(GL_CULL_FACE);
+	
 	DrawShadowVolumes();
 
 	//glStencilFunc(GL_EQUAL, 0, ~0);
@@ -123,5 +123,6 @@ void Scene::Render()
 	//glClearStencil(0);
 	//glClear(GL_STENCIL_BUFFER_BIT);
 
+	glDisable(GL_CULL_FACE);
 	glDisable(GL_DEPTH_TEST);
 }

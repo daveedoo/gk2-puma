@@ -25,17 +25,34 @@ void main ()
 	vec4 v1e = v1 + vec4(dir2, 0.0) * 1000.0;
 
 	// Emit all four vertices in the correct order
-	gl_Position = projMatrix * viewMatrix * v0e;
-	EmitVertex();
+	if (facingLight[2]) 
+	{
+		gl_Position = projMatrix * viewMatrix * v0e;
+		EmitVertex();
 
-	gl_Position = projMatrix * viewMatrix * v1e;
-	EmitVertex();
+		gl_Position = projMatrix * viewMatrix * v1e;
+		EmitVertex();
 
-	gl_Position = projMatrix * viewMatrix * v0;
-	EmitVertex();
+		gl_Position = projMatrix * viewMatrix * v0;
+		EmitVertex();
 
-	gl_Position = projMatrix * viewMatrix * v1;
-	EmitVertex();
+		gl_Position = projMatrix * viewMatrix * v1;
+		EmitVertex();
+	}
+	else
+	{
+		gl_Position = projMatrix * viewMatrix * v0;
+		EmitVertex();
+
+		gl_Position = projMatrix * viewMatrix * v1;
+		EmitVertex();
+
+		gl_Position = projMatrix * viewMatrix * v0e;
+		EmitVertex();
+
+		gl_Position = projMatrix * viewMatrix * v1e;
+		EmitVertex();
+	}
 
 	EndPrimitive();
 }
