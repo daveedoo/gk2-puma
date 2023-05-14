@@ -7,6 +7,6 @@ public:
 	Arm(std::string filename) : Mesh(), filename(filename) {}
 private:
 	std::string filename;
-	virtual VertexData GetVertexData() const override;
+	virtual VerticesData GetVertexData() const override;
 };
 

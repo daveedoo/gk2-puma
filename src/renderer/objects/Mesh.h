@@ -12,7 +12,7 @@ struct VertexPosNormal
 	glm::vec3 normal;
 };
 
-struct VertexData
+struct VerticesData
 {
 	unsigned int vertexCount;
 	unsigned int triangleCount;
@@ -31,7 +31,7 @@ public:
 	}
 	void Initialize();
 protected:
-	virtual VertexData GetVertexData() const = 0;
+	virtual VerticesData GetVertexData() const = 0;
 	std::unique_ptr<GL::VAO> vao;
 	std::unique_ptr<GL::VBO> vbo;
 	std::unique_ptr<GL::EBO> ebo;

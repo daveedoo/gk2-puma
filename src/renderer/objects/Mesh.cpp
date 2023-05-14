@@ -29,7 +29,7 @@ void Mesh::Render(const Camera& camera)
 
 void Mesh::Initialize()
 {
-	VertexData data = this->GetVertexData();
+	VerticesData data = this->GetVertexData();
 	this->triangleCount = data.triangleCount;
 
 	this->vao = std::make_unique<GL::VAO>();

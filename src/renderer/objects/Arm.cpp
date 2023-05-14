@@ -4,9 +4,9 @@
 #include <sstream>
 #include <iostream>
 
-VertexData Arm::GetVertexData() const
+VerticesData Arm::GetVertexData() const
 {
-	VertexData data;
+	VerticesData data;
 	// read data from filename line by line
 	std::string filepath = "./res/" + this->filename;
 	std::ifstream filestream(filepath);

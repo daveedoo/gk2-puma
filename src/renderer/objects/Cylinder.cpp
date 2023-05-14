@@ -7,7 +7,7 @@ Cylinder::Cylinder()
     this->program->SetVec3("color", this->color);
 }
 
-VertexData Cylinder::GetVertexData() const
+VerticesData Cylinder::GetVertexData() const
 {
     glm::vec3 center = glm::vec3(.5f, -1.f, -2.f);
     float radius = .5f;

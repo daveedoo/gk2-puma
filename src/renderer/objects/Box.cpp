@@ -6,7 +6,7 @@ Box::Box() : Mesh()
     this->program->SetVec3("color", this->color);
 }
 
-VertexData Box::GetVertexData() const
+VerticesData Box::GetVertexData() const
 {
     unsigned int vertexCount = 24;
     unsigned int triangleCount = 12;
@@ -59,5 +59,5 @@ VertexData Box::GetVertexData() const
 		{ 20, 22, 23 }
     };
 
-    return VertexData{ vertexCount, triangleCount, vertices, triangles };
+    return VerticesData{ vertexCount, triangleCount, vertices, triangles };
 }
