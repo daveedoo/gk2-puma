@@ -3,6 +3,7 @@
 uniform vec3 color;
 uniform vec3 lightPos;
 uniform vec3 cameraPos;
+uniform int enableLight;
 
 in vec3 fragNormal;
 in vec3 fragPos;
@@ -25,7 +26,7 @@ void main()
 	float spec = pow(max(dot(viewDir, reflectDir), 0.0f), 32);
 	vec3 specular = kS * spec * vec3(1.0f);
 
-	vec3 result = (ambient + diffuse + specular) * color;
+	vec3 result = (ambient + enableLight * (diffuse + specular)) * color;
 
 	FragColor = vec4(result, 1.f);
 }

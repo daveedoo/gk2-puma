@@ -31,6 +31,7 @@ public:
 	void SetModel(const glm::mat4& model) {
 		this->model = model;
 	}
+	void SetLight(bool enable);
 	void Initialize();
 protected:
 	virtual VerticesData GetVerticesData() const = 0;

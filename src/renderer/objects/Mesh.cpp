@@ -47,6 +47,11 @@ void Mesh::DrawShadowVolumes(const Camera& camera)
 		static_cast<GLenum>(this->shadowEBO->GetDataType()), static_cast<const void*>(0));
 }
 
+void Mesh::SetLight(bool enable)
+{
+	this->program->SetInt("enableLight", enable);
+}
+
 void Mesh::Initialize()
 {
 	VerticesData data = this->GetVerticesData();

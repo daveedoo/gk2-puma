@@ -69,6 +69,14 @@ bool Robot::HandleKey(const KeyEvent& keyEvent)
 	return true;
 }
 
+void Robot::SetLight(bool enable)
+{
+	for (int i = 0; i < 6; i++)
+	{
+		arms[i]->SetLight(enable);
+	}
+}
+
 void Robot::updateArms()
 {
 	glm::mat4 model(1.0f);

@@ -10,6 +10,7 @@ public:
 	void Render(const Camera& camera) const;
 	void DrawShadowVolumes(const Camera& camera) const;
 	bool HandleKey(const KeyEvent& keyEvent);
+	void SetLight(bool enable);
 private:
 	void updateArms();
 	std::array<std::unique_ptr<Arm>, 6> arms;
