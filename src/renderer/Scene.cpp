@@ -74,37 +74,39 @@ void Scene::Render()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glEnable(GL_DEPTH_TEST);
 
-	glColorMask(GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE);
-	Draw();
+	//glColorMask(GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE);
+	//Draw();
 
 	glEnable(GL_CULL_FACE);
-	glEnable(GL_STENCIL_TEST);
-	glDepthMask(GL_FALSE);
-	glStencilFunc(GL_ALWAYS, 0, ~0);
+	//glEnable(GL_STENCIL_TEST);
+	//glDepthMask(GL_FALSE);
+	//glStencilFunc(GL_ALWAYS, 0, ~0);
 
+	//glCullFace(GL_BACK);
+	//glStencilOp(GL_KEEP, GL_KEEP, GL_INCR);
+	//DrawShadowVolumes();
+
+	//glCullFace(GL_FRONT);
+	//glStencilOp(GL_KEEP, GL_KEEP, GL_DECR);
+	//DrawShadowVolumes();
+
+	//glDepthMask(GL_TRUE);
+	//glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
 	glCullFace(GL_BACK);
-	glStencilOp(GL_KEEP, GL_KEEP, GL_INCR);
+	//glDepthFunc(GL_GEQUAL);
+	//glStencilOp(GL_KEEP, GL_KEEP, GL_KEEP);
+
+	//glStencilFunc(GL_GREATER, 0, ~0);
+	//SetLight(false);
+	Draw();
+	glDisable(GL_CULL_FACE);
 	DrawShadowVolumes();
 
-	glCullFace(GL_FRONT);
-	glStencilOp(GL_KEEP, GL_KEEP, GL_DECR);
-	DrawShadowVolumes();
+	//glStencilFunc(GL_EQUAL, 0, ~0);
+	//SetLight(true);
+	//Draw();
 
-	glDepthMask(GL_TRUE);
-	glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
-	glCullFace(GL_BACK);
-	glDepthFunc(GL_GEQUAL);
-	glStencilOp(GL_KEEP, GL_KEEP, GL_KEEP);
-
-	glStencilFunc(GL_GREATER, 0, ~0);
-	SetLight(false);
-	Draw();
-
-	glStencilFunc(GL_EQUAL, 0, ~0);
-	SetLight(true);
-	Draw();
-
-	glDisable(GL_STENCIL_TEST);
+	//glDisable(GL_STENCIL_TEST);
 
 	/*glColorMask(GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE);
 	glDisable(GL_CULL_FACE);
@@ -118,8 +120,8 @@ void Scene::Render()
 
 	DrawShadowVolumes();*/
 
-	glClearStencil(0);
-	glClear(GL_STENCIL_BUFFER_BIT);
+	//glClearStencil(0);
+	//glClear(GL_STENCIL_BUFFER_BIT);
 
 	glDisable(GL_DEPTH_TEST);
 }

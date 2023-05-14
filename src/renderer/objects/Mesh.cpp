@@ -7,7 +7,7 @@ Mesh::Mesh()
 		"shadowVolume.geom", "shadowVolume.frag"))
 {
 	this->program->SetVec3("color", this->color);
-	glm::vec3 lightPos(-1.0f, 4.0f, 1.0f);
+	glm::vec3 lightPos(-1.0f, 4.0f, 5.0f);
 	this->program->SetVec3("lightPos", lightPos);
 	this->shadowVolumeProgram->SetVec3("lightPos", lightPos);
 }
@@ -42,7 +42,6 @@ void Mesh::DrawShadowVolumes(const Camera& camera)
 	this->shadowVolumeProgram->SetMat4("worldMatrix", this->model);
 	this->shadowVolumeProgram->SetMat4("viewMatrix", viewMatrix);
 	this->shadowVolumeProgram->SetMat4("projMatrix", camera.GetProjectionMatrix());
-	this->shadowVolumeProgram->SetVec3("cameraPos", cameraPos);
 
 	glDrawElements(GL_LINES_ADJACENCY, 6 * this->triangleCount,
 		static_cast<GLenum>(this->shadowEBO->GetDataType()), static_cast<const void*>(0));
