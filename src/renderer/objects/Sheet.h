@@ -5,6 +5,6 @@ class Sheet : public Mesh
 public:
 	Sheet();
 private:
-	virtual VerticesData GetVertexData() const override;
+	virtual VerticesData GetVerticesData() const override;
 };
 

@@ -191,6 +191,9 @@
   <ItemGroup>
     <None Include="src\gl\shaders\shader.frag" />
     <None Include="src\gl\shaders\shader.vert" />
+    <None Include="src\gl\shaders\shadowVolume.geom" />
+    <None Include="src\gl\shaders\shadowVolume.frag" />
+    <None Include="src\gl\shaders\shadowVolume.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

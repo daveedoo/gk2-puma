@@ -25,6 +25,9 @@ private:
 	std::unique_ptr<Sheet> metalSheet;
 	std::unique_ptr<Cylinder> cylinder;
 
+	void Draw();
+	void DrawShadowVolumes();
+	void SetLight(bool enable);
 public:
 	Scene(unsigned int frame_width, unsigned int frame_height);
 

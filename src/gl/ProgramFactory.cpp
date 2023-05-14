@@ -9,3 +9,12 @@ std::unique_ptr<GL::Program> ProgramFactory::CreateProgram(std::string vertexSha
 	auto program = std::make_unique<GL::Program>(VS, FS);
 	return std::move(program);
 }
+
+std::unique_ptr<GL::Program> ProgramFactory::CreateProgram(std::string vertexShader, std::string geometryShader, std::string fragmentShader)
+{	
+	GL::Shader VS(GL::Shader::ShaderType::VERTEX_SHADER, SHADERS_PATH / vertexShader);
+	GL::Shader GS(GL::Shader::ShaderType::GEOMETRY_SHADER, SHADERS_PATH / geometryShader);
+	GL::Shader FS(GL::Shader::ShaderType::FRAGMENT_SHADER, SHADERS_PATH / fragmentShader);
+	auto program = std::make_unique<GL::Program>(VS, GS, FS);
+	return std::move(program);
+}

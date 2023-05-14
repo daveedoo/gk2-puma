@@ -4,7 +4,7 @@
 #include <sstream>
 #include <iostream>
 
-VerticesData Arm::GetVertexData() const
+VerticesData Arm::GetVerticesData() const
 {
 	VerticesData data;
 	// read data from filename line by line
@@ -51,8 +51,34 @@ VerticesData Arm::GetVertexData() const
 		iss >> i1 >> i2 >> i3;
 		data.triangles.push_back({ i1, i2, i3 });
 	}
-	//TODO load edges
+	std::getline(filestream, line);
+	int edgeCount = std::stoi(line);
+	data.edges.reserve(edgeCount);
+	for (int i = 0; i < edgeCount; i++)
+	{
+		std::getline(filestream, line);
+		std::istringstream iss(line);
+		unsigned int i1, i2, i3, i4, t1, t2;
+		iss >> i1 >> i2 >> t1 >> t2;
+		i3 = GetRemainingIndex(data, t1, i1, i2);
+		i4 = GetRemainingIndex(data, t2, i1, i2);
+		data.edges.push_back({ i1, i2, i3, i4 });
+	}
 	filestream.close();
 
 	return data;
+}
+
+unsigned int Arm::GetRemainingIndex(VerticesData& data, unsigned int triangleIndex, unsigned int v1, unsigned int v2) const
+{
+	auto triangle = data.triangles[triangleIndex];
+	if (triangle[0] != v1 && triangle[0] != v2)
+	{
+		return triangle[0];
+	}
+	else if (triangle[1] != v1 && triangle[1] != v2)
+	{
+		return triangle[1];
+	}
+	else return triangle[2];
 }

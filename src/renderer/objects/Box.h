@@ -5,6 +5,6 @@ class Box : public Mesh
 public:
 	Box();
 private:
-	virtual VerticesData GetVertexData() const override;
+	virtual VerticesData GetVerticesData() const override;
 };
 

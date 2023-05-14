@@ -20,6 +20,14 @@ void Robot::Render(const Camera& camera) const
 	}
 }
 
+void Robot::DrawShadowVolumes(const Camera& camera) const
+{
+	for (int i = 0; i < 6; i++)
+	{
+		arms[i]->DrawShadowVolumes(camera);
+	}
+}
+
 bool Robot::HandleKey(const KeyEvent& keyEvent)
 {
 	double angleStep = keyEvent.mods.IsShiftDown() ? 10 * this->angleStep : this->angleStep;

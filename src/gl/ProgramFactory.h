@@ -9,5 +9,6 @@ private:
 
 public:
 	static std::unique_ptr<GL::Program> CreateProgram(std::string vertexShader, std::string fragmentShader);
+	static std::unique_ptr<GL::Program> CreateProgram(std::string vertexShader, std::string geometryShader, std::string fragmentShader);
 };
 

@@ -8,6 +8,7 @@ class Robot
 public:
 	Robot();
 	void Render(const Camera& camera) const;
+	void DrawShadowVolumes(const Camera& camera) const;
 	bool HandleKey(const KeyEvent& keyEvent);
 private:
 	void updateArms();

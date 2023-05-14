@@ -6,7 +6,7 @@ Sheet::Sheet()
 	this->program->SetVec3("color", this->color);
 }
 
-VerticesData Sheet::GetVertexData() const
+VerticesData Sheet::GetVerticesData() const
 {
 	unsigned int vertexCount = 8;
 	unsigned int triangleCount = 4;
