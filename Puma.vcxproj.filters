@@ -186,5 +186,7 @@
     <None Include="src\gl\shaders\shadowVolume.vert" />
     <None Include="src\gl\shaders\shadowVolume.frag" />
     <None Include="src\gl\shaders\shadowVolume.geom" />
+    <None Include="src\gl\shaders\pass.vert" />
+    <None Include="src\gl\shaders\uniform.frag" />
   </ItemGroup>
 </Project>

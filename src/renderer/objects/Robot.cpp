@@ -22,7 +22,7 @@ void Robot::Render(const Camera& camera) const
 
 void Robot::DrawShadowVolumes(const Camera& camera) const
 {
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 1; i++)
 	{
 		arms[i]->DrawShadowVolumes(camera);
 	}

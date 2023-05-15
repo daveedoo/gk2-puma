@@ -29,6 +29,17 @@ void Scene::DrawShadowVolumes()
 	this->cylinder->DrawShadowVolumes(*this->camera);
 }
 
+void Scene::DrawSolidColor(std::initializer_list<float> c)
+{
+	glm::vec4 color(c.begin()[0], c.begin()[1], c.begin()[2], c.begin()[3]);
+	this->program->Use();
+	this->vao->Unbind();
+	this->vao->Bind();
+	this->program->SetVec4("color", color);
+
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+}
+
 void Scene::SetLight(bool enable)
 {
 	this->robot->SetLight(enable);
@@ -47,6 +58,24 @@ Scene::Scene(unsigned int frame_width, unsigned int frame_height) :
 	this->roomBox->Initialize();
 	this->metalSheet->Initialize();
 	this->cylinder->Initialize();
+
+	program = ProgramFactory::CreateProgram("pass.vert", "uniform.frag");
+
+	std::vector<float> vertices = {
+		// quad spanning the entire screen
+		-1.f, -1.f, 0.f,
+		1.f, -1.f, 0.f,
+		1.f, 1.f, 0.f,
+		// second triangle
+		-1.f, -1.f, 0.f,
+		1.f, 1.f, 0.f,
+		-1.f, 1.f, 0.f
+	};
+	this->vao = std::make_unique<GL::VAO>();
+	this->vbo = std::make_unique<GL::VBO>(vertices.data(),
+		sizeof(float) * vertices.size());
+	this->vao->DefineFloatAttribute(*this->vbo, 0, 3,
+		GL::VAO::FloatAttribute::FLOAT, 3 * sizeof(float), 0);
 }
 
 void Scene::HandleEvent(const InputEvent& inputEvent)	// TODO: change event type to be not ResizeEvent (it is handled in SetFramebufferSize())
@@ -100,13 +129,26 @@ void Scene::Render()
 	glDepthFunc(GL_LESS);
 	glStencilOp(GL_KEEP, GL_KEEP, GL_KEEP);
 
-	glStencilFunc(GL_NOTEQUAL, 0, ~0);
-	SetLight(false);
-	Draw();
+	//glStencilFunc(GL_NOTEQUAL, 0, ~0);
+	//SetLight(false);
+	//Draw();
 
 	glStencilFunc(GL_EQUAL, 0, ~0);
 	SetLight(true);
 	Draw();
+
+	glDisable(GL_DEPTH_TEST);
+	glStencilFunc(GL_EQUAL, 1, ~0);
+	DrawSolidColor({ 1.f, 0.f, 0.f, 1.f });
+
+	glStencilFunc(GL_EQUAL, 2, ~0);
+	DrawSolidColor({ 1.f, .5f, 0.f, 1.f });
+
+	glStencilFunc(GL_EQUAL, 3, ~0);
+	DrawSolidColor({ 1.f, 1.f, 0.f, 1.f });
+
+	glStencilFunc(GL_EQUAL, 4, ~0);
+	DrawSolidColor({ 0.f, 1.f, 0.f, 1.f });
 
 	glDisable(GL_STENCIL_TEST);
 

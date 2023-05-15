@@ -28,6 +28,11 @@ private:
 	void Draw();
 	void DrawShadowVolumes();
 	void SetLight(bool enable);
+
+	void DrawSolidColor(std::initializer_list<float> c);
+	std::unique_ptr<GL::VAO> vao;
+	std::unique_ptr<GL::VBO> vbo;
+	std::unique_ptr<GL::Program> program;
 public:
 	Scene(unsigned int frame_width, unsigned int frame_height);
 
