@@ -75,7 +75,7 @@ void Renderer::Render()
 	glViewport(0, 0, this->framebufferWidth, this->framebufferHeight);
 	this->scene->Render();
 
-	this->RenderGUI();
+	//this->RenderGUI();
 }
 
 void Renderer::RenderGUI()

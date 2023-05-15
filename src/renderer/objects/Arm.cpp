@@ -3,22 +3,15 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
-#include "../../gl/ProgramFactory.h"=
 
-Arm::Arm(std::string filename)
-	: program(ProgramFactory::CreateProgram("shader.vert", "shader.frag"))
+VerticesData Arm::GetVertexData() const
 {
-	glm::vec3 color(1.0f, 1.0f, 1.0f);
-
-	this->program->SetVec3("color", color);
-
+	VerticesData data;
 	// read data from filename line by line
-	std::string filepath = "./res/" + filename;
+	std::string filepath = "./res/" + this->filename;
 	std::ifstream filestream(filepath);
 	std::string line;
 	std::vector<glm::vec3> vertexPositions;
-	std::vector<VertexPosNormal> vertices;
-	std::vector<std::array<unsigned int, 3>> triangles;
 	std::getline(filestream, line);
 	int vertexPositionCount = std::stoi(line);
 	vertexPositions.reserve(vertexPositionCount);
@@ -31,9 +24,9 @@ Arm::Arm(std::string filename)
 		vertexPositions.push_back(glm::vec3(x, y, z));
 	}
 	std::getline(filestream, line);
-	int vertexCount = std::stoi(line);
-	vertices.reserve(vertexCount);
-	for (int i = 0; i < vertexCount; i++)
+	data.vertexCount = std::stoi(line);
+	data.vertices.reserve(data.vertexCount);
+	for (int i = 0; i < data.vertexCount; i++)
 	{
 		std::getline(filestream, line);
 		std::istringstream iss(line);
@@ -44,43 +37,22 @@ Arm::Arm(std::string filename)
 			vertexPositions[index],
 			glm::vec3(x, y, z)
 		};
-		vertices.push_back(vertex);
+		data.vertices.push_back(vertex);
 	}
 	std::getline(filestream, line);
 	int triangleCount = std::stoi(line);
-	triangles.reserve(triangleCount);
-	this->triangleCount = triangleCount;
+	data.triangles.reserve(triangleCount);
+	data.triangleCount = triangleCount;
 	for (int i = 0; i < triangleCount; i++)
 	{
 		std::getline(filestream, line);
 		std::istringstream iss(line);
 		unsigned int i1, i2, i3;
 		iss >> i1 >> i2 >> i3;
-		triangles.push_back({ i1, i2, i3 });
+		data.triangles.push_back({ i1, i2, i3 });
 	}
 	//TODO load edges
 	filestream.close();
 
-	this->vao = std::make_unique<GL::VAO>();
-	this->vbo = std::make_unique<GL::VBO>(vertices.data(),
-		sizeof(VertexPosNormal) * vertexCount);
-	this->ebo = std::make_unique<GL::EBO>();
-	this->ebo->SetBufferData(triangles.data(),
-		GL::EBO::DataType::UINT, 3 * triangleCount);
-	this->vao->DefineFloatAttribute(*this->vbo, 0, 3, 
-		GL::VAO::FloatAttribute::FLOAT, sizeof(VertexPosNormal), 0);
-	this->vao->DefineFloatAttribute(*this->vbo, 1, 3, 
-		GL::VAO::FloatAttribute::FLOAT, sizeof(VertexPosNormal), sizeof(glm::vec3));
-}
-
-void Arm::Render(const Camera& camera) const
-{
-	this->vao->Bind();
-	this->program->Use();
-	this->program->SetMat4("worldMatrix", this->model);
-	this->program->SetMat4("viewMatrix", camera.GetViewMatrix());
-	this->program->SetMat4("projMatrix", camera.GetProjectionMatrix());
-
-	glDrawElements(GL_TRIANGLES, this->triangleCount * 3, 
-		static_cast<GLenum>(this->ebo->GetDataType()), static_cast<const void*>(0));
+	return data;
 }

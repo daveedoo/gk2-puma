@@ -8,6 +8,7 @@ Robot::Robot()
 	{
 		std::string filename = "mesh" + std::to_string(i + 1) + ".txt";
 		arms[i] = std::make_unique<Arm>(filename);
+		arms[i]->Initialize();
 	}
 }
 

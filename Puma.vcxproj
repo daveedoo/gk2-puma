@@ -131,6 +131,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\renderer\objects\Sheet.cpp" />
+    <ClCompile Include="src\renderer\objects\Box.cpp" />
+    <ClCompile Include="src\renderer\objects\Cylinder.cpp" />
+    <ClCompile Include="src\renderer\objects\Mesh.cpp" />
     <ClCompile Include="src\renderer\objects\Arm.cpp" />
     <ClCompile Include="src\renderer\objects\Robot.cpp" />
     <ClCompile Include="src\Camera.cpp" />
@@ -152,6 +156,10 @@
     <ClCompile Include="src\Window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\renderer\objects\Sheet.h" />
+    <ClInclude Include="src\renderer\objects\Box.h" />
+    <ClInclude Include="src\renderer\objects\Cylinder.h" />
+    <ClInclude Include="src\renderer\objects\Mesh.h" />
     <ClInclude Include="src\renderer\objects\Arm.h" />
     <ClInclude Include="src\renderer\objects\Robot.h" />
     <ClInclude Include="src\Camera.h" />
