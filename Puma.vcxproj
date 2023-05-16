@@ -160,6 +160,7 @@
     <ClInclude Include="src\renderer\objects\Box.h" />
     <ClInclude Include="src\renderer\objects\Cylinder.h" />
     <ClInclude Include="src\renderer\objects\Mesh.h" />
+    <ClInclude Include="src\FPSClock.h" />
     <ClInclude Include="src\renderer\objects\Arm.h" />
     <ClInclude Include="src\renderer\objects\Robot.h" />
     <ClInclude Include="src\Camera.h" />

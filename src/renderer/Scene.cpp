@@ -43,8 +43,9 @@ void Scene::SetFramebufferSize(unsigned int width, unsigned int height)
 	this->camera->SetAspect(static_cast<float>(width) / static_cast<float>(height));
 }
 
-void Scene::Update()
+void Scene::Update(double dt)
 {
+	this->robot->Update(dt);
 }
 
 void Scene::Render()

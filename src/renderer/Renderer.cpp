@@ -62,7 +62,9 @@ Renderer::~Renderer()
 
 void Renderer::Update()
 {
-	this->scene->Update();
+	clock.Query();
+	double dt = clock.getFrameTime();
+	this->scene->Update(dt);
 }
 
 void Renderer::UpdateSceneFramebufferSize()

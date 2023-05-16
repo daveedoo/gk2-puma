@@ -20,6 +20,10 @@ void Robot::Render(const Camera& camera) const
 	}
 }
 
+void Robot::Update(double dt)
+{
+}
+
 bool Robot::HandleKey(const KeyEvent& keyEvent)
 {
 	double angleStep = keyEvent.mods.IsShiftDown() ? 10 * this->angleStep : this->angleStep;

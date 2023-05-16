@@ -8,6 +8,7 @@ class Robot
 public:
 	Robot();
 	void Render(const Camera& camera) const;
+	void Update(double dt);
 	bool HandleKey(const KeyEvent& keyEvent);
 private:
 	void updateArms();

@@ -28,7 +28,7 @@ private:
 public:
 	Scene(unsigned int frame_width, unsigned int frame_height);
 
-	void Update();
+	void Update(double dt);
 	void Render();
 
 	void HandleEvent(const InputEvent& inputEvent);
