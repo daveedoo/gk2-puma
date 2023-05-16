@@ -26,6 +26,8 @@ Scene::Scene(unsigned int frame_width, unsigned int frame_height) :
 	this->roomBox->Initialize();
 	this->metalSheet->Initialize();
 	this->cylinder->Initialize();
+
+	this->robot->StartAnimation(this->metalSheet->GetCenterPosition(), 0.25f, this->metalSheet->GetSlopeAngle());
 }
 
 void Scene::HandleEvent(const InputEvent& inputEvent)	// TODO: change event type to be not ResizeEvent (it is handled in SetFramebufferSize())

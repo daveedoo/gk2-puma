@@ -5,11 +5,22 @@
 
 class Robot
 {
+private:
+	bool animation = false;
+	double time = 0.0;
+	glm::vec3 circleCenter = glm::vec3(0.f);
+	float circleRadius = 1.f;
+	float slopeAngle = 0.f;
+
 public:
 	Robot();
 	void Render(const Camera& camera) const;
 	void Update(double dt);
 	bool HandleKey(const KeyEvent& keyEvent);
+	
+	void StartAnimation(glm::vec3 circleCenter, float circleRadius, float slopeAngle);
+	void StopAnimation();
+
 private:
 	void updateArms();
 	void SetArmPosition(const glm::vec3& pos, const glm::vec3& normal);
@@ -19,4 +30,3 @@ private:
 	};
 	const static double angleStep;
 };
-

@@ -24,6 +24,21 @@ void Robot::Render(const Camera& camera) const
 
 void Robot::Update(double dt)
 {
+	if (this->animation)
+	{
+		time += dt;
+
+		// TODO: matrix is copied from Sheet constructor
+		auto modelMtx = glm::mat4(1.f);
+		modelMtx = glm::translate(modelMtx, this->circleCenter);
+		modelMtx = glm::rotate(modelMtx, this->slopeAngle, glm::vec3(0.f, 0.f, 1.f));
+
+		auto pos = glm::vec4(0.f, circleRadius * glm::cos(time), circleRadius * glm::sin(time), 1.f);
+		pos = modelMtx * pos;
+		auto normal = glm::rotateZ(glm::vec3(1.f, 0.f, 0.f), this->slopeAngle);
+
+		SetArmPosition(glm::vec3(pos), normal);
+	}
 }
 
 bool Robot::HandleKey(const KeyEvent& keyEvent)
@@ -65,6 +80,20 @@ bool Robot::HandleKey(const KeyEvent& keyEvent)
 	}
 	updateArms();
 	return true;
+}
+
+void Robot::StartAnimation(glm::vec3 circleCenter, float circleRadius, float slopeAngle)
+{
+	this->circleCenter = circleCenter;
+	this->circleRadius = circleRadius;
+	this->slopeAngle = slopeAngle;
+	this->time = 0.0;
+	this->animation = true;
+}
+
+void Robot::StopAnimation()
+{
+	this->animation = false;
 }
 
 void Robot::updateArms()
