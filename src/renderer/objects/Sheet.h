@@ -12,7 +12,7 @@ private:
 
 public:
 	Sheet(glm::vec3 position, float angle);
-	glm::vec3 GetCenterPosition() { return this->position; }
-	float GetSlopeAngle() { return this->angle; }
+	const glm::vec3& GetCenterPosition() const { return this->position; }
+	float GetSlopeAngle() const { return this->angle; }
 };
 

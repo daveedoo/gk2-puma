@@ -27,7 +27,7 @@ Scene::Scene(unsigned int frame_width, unsigned int frame_height) :
 	this->metalSheet->Initialize();
 	this->cylinder->Initialize();
 
-	this->robot->StartAnimation(this->metalSheet->GetCenterPosition(), 0.25f, this->metalSheet->GetSlopeAngle());
+	this->robotMovementHandler = std::make_shared<RobotMovementInputHandler>(*this->metalSheet, *this->robot);
 }
 
 void Scene::HandleEvent(const InputEvent& inputEvent)	// TODO: change event type to be not ResizeEvent (it is handled in SetFramebufferSize())
@@ -41,6 +41,7 @@ void Scene::HandleEvent(const InputEvent& inputEvent)	// TODO: change event type
 		}
 	}
 	this->cameraMovementHandler->ProcessInput(inputEvent);
+	this->robotMovementHandler->ProcessInput(inputEvent);
 }
 
 void Scene::SetFramebufferSize(unsigned int width, unsigned int height)

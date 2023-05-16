@@ -87,7 +87,6 @@ void Robot::StartAnimation(glm::vec3 circleCenter, float circleRadius, float slo
 	this->circleCenter = circleCenter;
 	this->circleRadius = circleRadius;
 	this->slopeAngle = slopeAngle;
-	this->time = 0.0;
 	this->animation = true;
 }
 
