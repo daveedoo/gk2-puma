@@ -131,6 +131,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\renderer\ParticlesSystem.cpp" />
     <ClCompile Include="src\Window\input\handlers\RobotMovementInputHandler.cpp" />
     <ClCompile Include="src\renderer\objects\Sheet.cpp" />
     <ClCompile Include="src\renderer\objects\Box.cpp" />
@@ -157,6 +158,7 @@
     <ClCompile Include="src\Window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\renderer\ParticlesSystem.h" />
     <ClInclude Include="src\Window\input\handlers\RobotMovementInputHandler.h" />
     <ClInclude Include="src\renderer\objects\Sheet.h" />
     <ClInclude Include="src\renderer\objects\Box.h" />
