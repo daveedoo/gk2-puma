@@ -9,6 +9,7 @@
 #include "objects/Box.h"
 #include "objects/Sheet.h"
 #include "objects/Cylinder.h"
+#include "../Window/input/handlers/RobotMovementInputHandler.h"
 
 class Scene
 {
@@ -19,6 +20,7 @@ private:
 
 	std::shared_ptr<Camera> camera;
 	std::shared_ptr<CameraMovementInputHandler> cameraMovementHandler;
+	std::shared_ptr<RobotMovementInputHandler> robotMovementHandler;
 	std::unique_ptr<Floor> floor;
 	std::unique_ptr<Robot> robot;
 	std::unique_ptr<Box> roomBox;
@@ -28,7 +30,7 @@ private:
 public:
 	Scene(unsigned int frame_width, unsigned int frame_height);
 
-	void Update();
+	void Update(double dt);
 	void Render();
 
 	void HandleEvent(const InputEvent& inputEvent);
