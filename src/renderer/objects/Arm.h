@@ -8,7 +8,7 @@ public:
 private:
 	std::string filename;
 	virtual VerticesData GetVerticesData() const override;
-	unsigned int GetRemainingIndex(VerticesData& data, unsigned int triangleIndex,
+	unsigned int GetRemainingIndex(VerticesData& data, std::vector<glm::vec3> vertexPositions, unsigned int triangleIndex,
 		unsigned int v1, unsigned int v2) const;
 };
 

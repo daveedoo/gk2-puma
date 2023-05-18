@@ -129,15 +129,16 @@ void Scene::Render()
 	glDepthFunc(GL_LESS);
 	glStencilOp(GL_KEEP, GL_KEEP, GL_KEEP);
 
-	//glStencilFunc(GL_NOTEQUAL, 0, ~0);
-	//SetLight(false);
-	//Draw();
+	glStencilFunc(GL_NOTEQUAL, 0, ~0);
+	SetLight(false);
+	Draw();
 
 	glStencilFunc(GL_EQUAL, 0, ~0);
 	SetLight(true);
 	Draw();
+	//DrawShadowVolumes();
 
-	glDisable(GL_DEPTH_TEST);
+	/*glDisable(GL_DEPTH_TEST);
 	glStencilFunc(GL_EQUAL, 1, ~0);
 	DrawSolidColor({ 1.f, 0.f, 0.f, 1.f });
 
@@ -150,7 +151,7 @@ void Scene::Render()
 	glStencilFunc(GL_EQUAL, 4, ~0);
 	DrawSolidColor({ 0.f, 1.f, 0.f, 1.f });
 
-	glDisable(GL_STENCIL_TEST);
+	glDisable(GL_STENCIL_TEST);*/
 
 	/*glColorMask(GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE);
 	glDisable(GL_CULL_FACE);

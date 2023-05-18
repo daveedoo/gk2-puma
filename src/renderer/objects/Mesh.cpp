@@ -43,6 +43,7 @@ void Mesh::DrawShadowVolumes(const Camera& camera)
 	this->shadowVolumeProgram->SetMat4("viewMatrix", viewMatrix);
 	this->shadowVolumeProgram->SetMat4("projMatrix", camera.GetProjectionMatrix());
 
+	glLineWidth(2.0f);
 	glDrawElements(GL_LINES_ADJACENCY, 6 * this->triangleCount,
 		static_cast<GLenum>(this->shadowEBO->GetDataType()), static_cast<const void*>(0));
 }
