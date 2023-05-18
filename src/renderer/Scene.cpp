@@ -51,13 +51,18 @@ void Scene::SetLight(bool enable)
 Scene::Scene(unsigned int frame_width, unsigned int frame_height) :
 	camera(std::make_shared<Camera>(90, static_cast<float>(frame_width) / static_cast<float>(frame_height), 0.1f, 100.f)),
 	cameraMovementHandler(std::make_shared<CameraMovementInputHandler>(*this->camera)),
-	floor(std::make_unique<Floor>(50, 50)), robot(std::make_unique<Robot>()), roomBox(std::make_unique<Box>()),
-	metalSheet(std::make_unique<Sheet>()), cylinder(std::make_unique<Cylinder>())
+	floor(std::make_unique<Floor>(50, 50)),
+	robot(std::make_unique<Robot>()),
+	roomBox(std::make_unique<Box>()),
+	metalSheet(std::make_unique<Sheet>(glm::vec3(-1.5f, 0.f, 0.f), glm::radians(30.f))),
+	cylinder(std::make_unique<Cylinder>())
 {
 	this->camera->Translate(glm::vec3(0.f, 1.f, 1.f));
 	this->roomBox->Initialize();
 	this->metalSheet->Initialize();
 	this->cylinder->Initialize();
+
+	this->robotMovementHandler = std::make_shared<RobotMovementInputHandler>(*this->metalSheet, *this->robot);
 
 	program = ProgramFactory::CreateProgram("pass.vert", "uniform.frag");
 
@@ -89,6 +94,7 @@ void Scene::HandleEvent(const InputEvent& inputEvent)	// TODO: change event type
 		}
 	}
 	this->cameraMovementHandler->ProcessInput(inputEvent);
+	this->robotMovementHandler->ProcessInput(inputEvent);
 }
 
 void Scene::SetFramebufferSize(unsigned int width, unsigned int height)
@@ -96,8 +102,9 @@ void Scene::SetFramebufferSize(unsigned int width, unsigned int height)
 	this->camera->SetAspect(static_cast<float>(width) / static_cast<float>(height));
 }
 
-void Scene::Update()
+void Scene::Update(double dt)
 {
+	this->robot->Update(dt);
 }
 
 void Scene::Render()
