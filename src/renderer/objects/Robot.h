@@ -16,11 +16,13 @@ public:
 	Robot();
 	void Render(const Camera& camera) const;
 	void Update(double dt);
+	void DrawShadowVolumes(const Camera& camera) const;
 	bool HandleKey(const KeyEvent& keyEvent);
 	
 	void StartAnimation(glm::vec3 circleCenter, float circleRadius, float slopeAngle);
 	void StopAnimation();
 
+	void SetLight(bool enable);
 private:
 	void updateArms();
 	void SetArmPosition(const glm::vec3& pos, const glm::vec3& normal);

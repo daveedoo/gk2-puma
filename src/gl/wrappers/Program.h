@@ -19,6 +19,7 @@ namespace GL
 
 	public:
 		Program(Shader& vertexShader, Shader& fragmentShader);
+		Program(Shader& vertexShader, Shader& geometryShader, Shader& fragmentShader);
 		~Program();
 
 		void Use();

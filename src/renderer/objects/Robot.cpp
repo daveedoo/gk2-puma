@@ -41,6 +41,14 @@ void Robot::Update(double dt)
 	}
 }
 
+void Robot::DrawShadowVolumes(const Camera& camera) const
+{
+	for (int i = 0; i < 6; i++)
+	{
+		arms[i]->DrawShadowVolumes(camera);
+	}
+}
+
 bool Robot::HandleKey(const KeyEvent& keyEvent)
 {
 	double angleStep = keyEvent.mods.IsShiftDown() ? 10 * this->angleStep : this->angleStep;
@@ -80,6 +88,14 @@ bool Robot::HandleKey(const KeyEvent& keyEvent)
 	}
 	updateArms();
 	return true;
+}
+
+void Robot::SetLight(bool enable)
+{
+	for (int i = 0; i < 6; i++)
+	{
+		arms[i]->SetLight(enable);
+	}
 }
 
 void Robot::StartAnimation(glm::vec3 circleCenter, float circleRadius, float slopeAngle)

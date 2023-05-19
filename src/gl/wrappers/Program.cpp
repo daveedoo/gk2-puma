@@ -10,6 +10,11 @@ namespace GL
 		this->Build(&vertexShader, nullptr, &fragmentShader);
 	}
 
+	Program::Program(Shader& vertexShader, Shader& geometryShader, Shader& fragmentShader)
+	{
+		this->Build(&vertexShader, &geometryShader, &fragmentShader);
+	}
+
 	void Program::Build(Shader* vertexShader, Shader* geometryShader, Shader* fragmentShader)
 	{
 		if (vertexShader == nullptr || vertexShader->type != Shader::ShaderType::VERTEX_SHADER)

@@ -8,7 +8,7 @@ private:
 	glm::vec3 position;
 	float angle;
 
-	virtual VerticesData GetVertexData() const override;
+	virtual VerticesData GetVerticesData() const override;
 
 public:
 	Sheet(glm::vec3 position, float angle);

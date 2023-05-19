@@ -13,7 +13,7 @@ Sheet::Sheet(glm::vec3 position, float angle) :
 	SetModel(modelMtx);
 }
 
-VerticesData Sheet::GetVertexData() const
+VerticesData Sheet::GetVerticesData() const
 {
 	unsigned int vertexCount = 8;
 	unsigned int triangleCount = 4;

@@ -4,7 +4,7 @@
 #include <sstream>
 #include <iostream>
 
-VerticesData Arm::GetVertexData() const
+VerticesData Arm::GetVerticesData() const
 {
 	VerticesData data;
 	// read data from filename line by line
@@ -37,6 +37,7 @@ VerticesData Arm::GetVertexData() const
 			vertexPositions[index],
 			glm::vec3(x, y, z)
 		};
+		if (i < vertexPositionCount && index != i) std::cout << "Index mismatch: " << i << " " << index << std::endl;
 		data.vertices.push_back(vertex);
 	}
 	std::getline(filestream, line);
@@ -51,8 +52,40 @@ VerticesData Arm::GetVertexData() const
 		iss >> i1 >> i2 >> i3;
 		data.triangles.push_back({ i1, i2, i3 });
 	}
-	//TODO load edges
+	std::getline(filestream, line);
+	int edgeCount = std::stoi(line);
+	data.edges.reserve(edgeCount);
+	for (int i = 0; i < edgeCount; i++)
+	{
+		std::getline(filestream, line);
+		std::istringstream iss(line);
+		unsigned int i1, i2, i3, i4, t1, t2;
+		iss >> i1 >> i2 >> t1 >> t2;
+		i3 = GetRemainingIndex(data, vertexPositions, t1, i1, i2);
+		i4 = GetRemainingIndex(data, vertexPositions, t2, i1, i2);
+		data.edges.push_back({ i1, i2, i3, i4 });
+	}
 	filestream.close();
 
 	return data;
+}
+
+unsigned int Arm::GetRemainingIndex(VerticesData& data, std::vector<glm::vec3> vertexPositions, unsigned int triangleIndex,
+	unsigned int v1, unsigned int v2) const
+{
+	auto triangle = data.triangles[triangleIndex];
+	auto vertices = data.vertices;
+	auto pos1 = vertexPositions[v1];
+	auto pos2 = vertexPositions[v2];
+	auto tPos1 = vertices[triangle[0]].position;
+	auto tPos2 = vertices[triangle[1]].position;
+	if (tPos1 != pos1 && tPos1 != pos2)
+	{
+		return triangle[0];
+	}
+	else if (tPos2 != pos1 && tPos2 != pos2)
+	{
+		return triangle[1];
+	}
+	else return triangle[2];
 }
