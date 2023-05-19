@@ -10,6 +10,7 @@
 #include "objects/Sheet.h"
 #include "objects/Cylinder.h"
 #include "../Window/input/handlers/RobotMovementInputHandler.h"
+#include "ParticlesSystem.h"
 
 class Scene
 {
@@ -26,6 +27,9 @@ private:
 	std::unique_ptr<Box> roomBox;
 	std::unique_ptr<Sheet> metalSheet;
 	std::unique_ptr<Cylinder> cylinder;
+	std::unique_ptr<ParticlesSystem> particles;
+
+	bool animationOn = false;
 
 	void Draw();
 	void DrawShadowVolumes();

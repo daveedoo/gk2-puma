@@ -84,6 +84,12 @@
     <ClCompile Include="src\renderer\objects\Sheet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\renderer\ParticlesSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Window\input\handlers\RobotMovementInputHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\gl\ProgramFactory.h">
@@ -179,6 +185,15 @@
     <ClInclude Include="src\renderer\objects\Sheet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\renderer\ParticlesSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Window\input\handlers\RobotMovementInputHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FPSClock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\gl\shaders\shader.frag" />
@@ -188,5 +203,7 @@
     <None Include="src\gl\shaders\shadowVolume.geom" />
     <None Include="src\gl\shaders\pass.vert" />
     <None Include="src\gl\shaders\uniform.frag" />
+    <None Include="src\gl\shaders\particles.vert" />
+    <None Include="src\gl\shaders\particles.frag" />
   </ItemGroup>
 </Project>
