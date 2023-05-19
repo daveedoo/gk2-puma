@@ -194,6 +194,8 @@
     <ClInclude Include="src\Window\Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="src\gl\shaders\particles.frag" />
+    <None Include="src\gl\shaders\particles.vert" />
     <None Include="src\gl\shaders\shader.frag" />
     <None Include="src\gl\shaders\shader.vert" />
   </ItemGroup>

@@ -74,21 +74,23 @@ void Renderer::UpdateSceneFramebufferSize()
 
 void Renderer::Render()
 {
-	glViewport(0, 0, this->framebufferWidth, this->framebufferHeight);
-	this->scene->Render();
-
-	//this->RenderGUI();
-}
-
-void Renderer::RenderGUI()
-{
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplGlfw_NewFrame();
 	ImGui::NewFrame();
 
-	static const float GUI_WIDTH = 400.f;
-	ImGui::ShowDemoWindow();
+	glViewport(0, 0, this->framebufferWidth, this->framebufferHeight);
+	this->scene->Render();
+
+	//this->RenderGUI();
 
 	ImGui::Render();
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+}
+
+void Renderer::RenderGUI()
+{
+
+	static const float GUI_WIDTH = 400.f;
+	ImGui::ShowDemoWindow();
+
 }
