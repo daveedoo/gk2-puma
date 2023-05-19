@@ -5,6 +5,6 @@ class Cylinder : public Mesh
 public:
 	Cylinder();
 private:
-	virtual VerticesData GetVertexData() const override;
+	virtual VerticesData GetVerticesData() const override;
 };
 
